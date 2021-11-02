@@ -1,5 +1,5 @@
 # Generative Occupancy Fields for 3D Surface-Aware Image Synthesis (NeurIPS 2021)
-###  [Project Page](https://sheldontsui.github.io/projects/GOF) | [Paper](https://sheldontsui.github.io/projects/GOF)
+###  [Project Page](https://sheldontsui.github.io/projects/GOF) | [Paper](http://arxiv.org/abs/2111.00969)
 
 [Xudong Xu](https://sheldontsui.github.io/), [Xingang Pan](https://xingangpan.github.io/), [Dahua Lin](http://dahua.me) and [Bo Dai](http://daibo.info/)
 
