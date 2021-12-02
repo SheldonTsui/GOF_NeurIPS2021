@@ -1,0 +1,13 @@
+__pycache__/
+backup/
+output/
+backup/
+shapes/
+EvalImages/
+*.swp
+*.swo
+data/
+*debug.py
+inversion/
+imgs/
+scripts/
