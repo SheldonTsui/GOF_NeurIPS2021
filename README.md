@@ -14,7 +14,15 @@ pip install -r requirements.txt
 ```
 
 ## Training
-We have put several bash files in `auto_bash` for reference. The adopted hyperparameters in our paper has been listed in the `curriculums.py` file.
+We have put several bash files of BFM, CelebA, and Cats datasets in `auto_bash` for reference.
+The adopted hyperparameters in our paper has been listed in the `curriculums.py` file.
+
+If you want to train with your own dataset,
+you should set the hyperparameters carefully, especially those related to the camera pose distribution.
+Just as the settings in the `curriculums.py` file,
+you can leverage some camera pose predictors to obtain the rough 'h_stddev' and 'v_stddev',
+and tune them according to the corresponding performance.
+Besides, you should add the dataset class in `dataset.py` and modify the reference bash file to fit your own dataset accordingly.
 
 ## Evaluation
 ### Evaluation Metrics
@@ -55,6 +63,11 @@ and render it to the corresponding multi-view images with the `render_meshimg.py
 
 ## Pretrained Models
 We provide pretrained models for BFM, CelebA, and Cats. Please refer to [this link](https://drive.google.com/drive/folders/1dh2PF29Z4UhS8lk_8WCGDgkoYhKwDBQu?usp=sharing).
+
+As mentioned in the supplementary, the training of all models starts from an early (about 2K iterations) pretrained model with the correct outward-facing faces.
+We also provide the early pretrained models for three datasets in [this link](https://drive.google.com/drive/folders/1tXCPJsTZlcQ7BDag7DUJwQFcEbycFsia?usp=sharing).
+If you want to start from the early pretrained models, you can replace the 'load_dir' name in bash files in `auto_bash` with the corresponding path of these pretrained models.
+Since the optimizer parameters are not provided here, you may need to comment L138~139 out.
 
 ## Citation
 If you find this codebase useful for your research, please cite:

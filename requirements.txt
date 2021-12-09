@@ -19,4 +19,4 @@ traitlets==4.3.3
 trimesh==3.6.10
 pyrender==0.1.45
 pyglet==1.5.16
-mcubes
+PyMCubes

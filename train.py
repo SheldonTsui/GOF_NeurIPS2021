@@ -102,8 +102,8 @@ def train(rank, world_size, opt):
     scaler = torch.cuda.amp.GradScaler()
 
     if opt.load_dir != '' and not opt.load_dict:
-        generator = torch.load(opt.load_dir + 'generator.pth', map_location=device)
-        discriminator = torch.load(opt.load_dir + 'discriminator.pth', map_location=device)
+        generator = torch.load(os.path.join(opt.load_dir, 'generator.pth'), map_location=device)
+        discriminator = torch.load(os.path.join(opt.load_dir, 'discriminator.pth'), map_location=device)
     else:
         generator = getattr(generators, metadata['generator'])(SIREN, metadata['latent_dim']).to(device)
         discriminator = getattr(discriminators, metadata['discriminator'])().to(device)
@@ -111,8 +111,8 @@ def train(rank, world_size, opt):
         ema2 = ExponentialMovingAverage(generator.parameters(), decay=0.9999)
 
     if opt.load_dir != '' and opt.load_dict:
-        generator.load_state_dict(torch.load(opt.load_dir + 'generator.pth', map_location=device), strict=False)
-        discriminator.load_state_dict(torch.load(opt.load_dir + 'discriminator.pth', map_location=device), strict=False)
+        generator.load_state_dict(torch.load(os.path.join(opt.load_dir, 'generator.pth'), map_location=device), strict=False)
+        discriminator.load_state_dict(torch.load(os.path.join(opt.load_dir, 'discriminator.pth'), map_location=device), strict=False)
 
     generator_ddp = DDP(generator, device_ids=[rank], find_unused_parameters=True)
     discriminator_ddp = DDP(discriminator, device_ids=[rank], find_unused_parameters=True, broadcast_buffers=False)
@@ -133,12 +133,12 @@ def train(rank, world_size, opt):
     optimizer_D = torch.optim.Adam(discriminator_ddp.parameters(), lr=metadata['disc_lr'], betas=metadata['betas'], weight_decay=metadata['weight_decay'])
 
     if opt.load_dir != '':
-        ema = torch.load(opt.load_dir + 'ema.pth', map_location=device)
-        ema2 = torch.load(opt.load_dir + 'ema2.pth', map_location=device)
-        optimizer_G.load_state_dict(torch.load(opt.load_dir + 'optimizer_G.pth', map_location=device))
-        optimizer_D.load_state_dict(torch.load(opt.load_dir + 'optimizer_D.pth', map_location=device))
+        ema = torch.load(os.path.join(opt.load_dir, 'ema.pth'), map_location=device)
+        ema2 = torch.load(os.path.join(opt.load_dir, 'ema2.pth'), map_location=device)
+        optimizer_G.load_state_dict(torch.load(os.path.join(opt.load_dir, 'optimizer_G.pth'), map_location=device))
+        optimizer_D.load_state_dict(torch.load(os.path.join(opt.load_dir, 'optimizer_D.pth'), map_location=device))
         if not metadata.get('disable_scaler', False):
-            scaler.load_state_dict(torch.load(opt.load_dir + 'scaler.pth', map_location=device))
+            scaler.load_state_dict(torch.load(os.path.join(opt.load_dir, 'scaler.pth'), map_location=device))
 
     generator_losses = []
     discriminator_losses = []
