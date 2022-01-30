@@ -57,9 +57,9 @@ python render_video_interpolation.py path/to/generator.pth --curriculum CURRICUL
 ### Extract 3D Shapes
 You should first generate a voxel npy file by running:
 ```
-python extract_shapes.py path/to/generator.pth --curriculum CURRICULUM --seed 0
+python extract_shapes.py path/to/generator.pth --seeds 0 1 2 3
 ```
-and render it to the corresponding multi-view images with the `render_meshimg.py` script.
+and render it to the multi-view mesh images with the `render_meshimg.py` script.
 
 ## Pretrained Models
 We provide pretrained models for BFM, CelebA, and Cats. Please refer to [this link](https://drive.google.com/drive/folders/1dh2PF29Z4UhS8lk_8WCGDgkoYhKwDBQu?usp=sharing).

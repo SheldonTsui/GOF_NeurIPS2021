@@ -62,8 +62,7 @@ def sample_generator(generator, z, max_batch=100000, voxel_resolution=256, voxel
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('path', type=str)
-    parser.add_argument('--seeds_start', type=int, default=0)
-    parser.add_argument('--seeds_end', type=int, default=0)
+    parser.add_argument('--seeds', nargs='+', default=[0, 1, 2])
     parser.add_argument('--cube_size', type=float, default=0.3)
     parser.add_argument('--voxel_resolution', type=int, default=256)
     parser.add_argument('--output_dir', type=str, default='shapes')
@@ -84,7 +83,7 @@ if __name__ == '__main__':
     generator.set_device(device)
     generator.eval()
     
-    for seed in range(opt.seeds_start, opt.seeds_end):
+    for seed in opt.seeds:
         torch.manual_seed(seed)
         
         z = torch.randn(1, 256, device=device)

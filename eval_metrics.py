@@ -65,6 +65,6 @@ if __name__ == '__main__':
     main(opt.generator_path, curriculum, num_images=opt.num_images, max_batch_size=opt.max_batch_size, output_dir=opt.output_dir)
     metrics_dict = calculate_metrics(opt.output_dir, opt.real_image_dir, cuda=True, isc=True, fid=True, kid=True, verbose=False)
     print(metrics_dict)
-    with open('output/evalmetric/results.txt', 'a') as cur_file:
-        cur_file.write(str(opt.generator_path))
-        cur_file.write(str(metrics_dict) + '\n\n')
+    #with open('output/evalmetric/results.txt', 'a') as cur_file:
+    #    cur_file.write(str(opt.generator_path))
+    #    cur_file.write(str(metrics_dict) + '\n\n')

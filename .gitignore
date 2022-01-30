@@ -11,3 +11,6 @@ data/
 inversion/
 imgs/
 scripts/
+temp/
+vids/
+vids_interp/
